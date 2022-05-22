@@ -19,10 +19,10 @@ def login():
 @app.route('/signup', methods =['GET', 'POST'])
 def signup():
     data = request.get_json(force=True)
-    fullName = data["fullName"]
-    email = data["email"]
-    password = data["password"]
-    confirmPassword = data["confirmPassword"]
+    fullName = data['fullName']
+    email = data['email']
+    password = data['password']
+    confirmPassword = data['confirmPassword']
     put_data = signup_connection(fullName,email,password,confirmPassword)
     return put_data
 

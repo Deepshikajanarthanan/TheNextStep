@@ -11,9 +11,9 @@ def get_data_from_db(email,Password):
     data = my_collection.find_one(query)
     print(data)
     if data == None:
-        return("Invalid Username or Password")
+        return({"message":"Invalid Username or Password"})
     else:
-        return("Successfully Logged In")
+        return({"userName":data["fullName"],"message":"Successfully Logged In"})
 
 def signup_connection(fullName,email,password,confirmPassword):
     print("In DB Connection")
@@ -26,9 +26,9 @@ def signup_connection(fullName,email,password,confirmPassword):
     data = my_collection.find_one(query)
     if data == None:
         my_collection.insert_one({'fullName':fullName,'email':email,'password':password,'confirmPassword':confirmPassword})
-        return ("Successfully Signed Up")
+        return ({"message":"Successfully Signed Up"})
     else:
-        return ("Email Id already registered")
+        return ({"message":"Email Id already registered"})
 
 def get_recommendation(streamName):
     print("In DB Connection")
@@ -48,7 +48,7 @@ def get_stream_info(streamName):
     client = pymongo.MongoClient(DEFAULT_CONNECTION_URL)
     my_db = client["TheNextStep"]
     my_collection = my_db["googleResponse"]
-    query = {"What type of course or subject you are interested in (Area of Interest)":streamName}
+    query = {"interested":streamName}
     data = my_collection.count_documents(query)
     return data
 
