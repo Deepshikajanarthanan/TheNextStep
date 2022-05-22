@@ -10,10 +10,10 @@ CORS(app)
 
 @app.route('/login', methods =['GET', 'POST'])
 def login():
-    if request.method == 'POST' and 'userName' in request.form and 'password' in request.form:
-        username = request.form['userName']
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+        email = request.form['email']
         password = request.form['password']
-        results = get_data_from_db(username, password)
+        results = get_data_from_db(email, password)
         print(results)
         return results
 
