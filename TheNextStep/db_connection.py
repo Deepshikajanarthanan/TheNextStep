@@ -1,13 +1,13 @@
 import pymongo
 
-def get_data_from_db(Username,Password):
+def get_data_from_db(email,Password):
     print("In DB Connection")
     DEFAULT_CONNECTION_URL = "mongodb+srv://admin:admin@thenextstep.ynldq.mongodb.net/test"
     # Establish a connection with mongoDB
     client = pymongo.MongoClient(DEFAULT_CONNECTION_URL)
     my_db = client["TheNextStep"]
     my_collection = my_db["user"]
-    query = {"Username":Username,"Password":Password}
+    query = {"email":email,"password":Password}
     data = my_collection.find_one(query)
     if data == None:
         return("Invalid Username or Password")
